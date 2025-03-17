@@ -8,8 +8,22 @@
 import SwiftUI
 
 struct AlertPractices: View {
+    @State var showAlert : Bool = false
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            Button("Show Alert"){
+                showAlert = true
+            }
+        }
+        .alert("Este es un mensaje de alerta", isPresented: $showAlert){
+            Button("Aceptar"){
+                print("Aceptar")
+            }
+            Button("Cancelar"){
+                print("cancelar")
+            }
+        }
     }
 }
 
