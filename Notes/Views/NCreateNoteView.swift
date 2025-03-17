@@ -8,27 +8,30 @@
 import SwiftUI
 
 struct NCreateNoteView: View {
-    @State private var title:String = ""
-    @State private var text:String = ""
+    @State private var title: String = ""
+    @State private var text: String = ""
     @State var size: TypeCard = .small
-    @State var isFavorite:Bool = false
-    
-    
-    func onTap(){
-        //create note
+    @State var isFavorite: Bool = false
+
+    var onNoteCreated: ((NCard) -> Void)?
+
+    func onTap() {
+        // crear nota
         let card = NCard(title: title, text: text, type: size)
-        
-        print(card)
+
+        print("Esta es tu nueva card: \(card)")
+
+        onNoteCreated?(card)
     }
-    
+
     var body: some View {
-        ScrollView{
+        ScrollView {
             VStack {
                 Text("Crear Nueva Nota")
                     .font(.largeTitle)
                     .bold()
-                    .padding(.bottom,10)
-                TextField("Titulo",text: $title)
+                    .padding(.bottom, 10)
+                TextField("Título", text: $title)
                     .font(.headline)
                     .padding()
                     .background(Color.gray.opacity(0.1))
@@ -40,7 +43,7 @@ struct NCreateNoteView: View {
                     .padding()
                     .background(Color.gray.opacity(0.1))
                     .cornerRadius(8)
-                HStack{
+                HStack {
                     Text("Tamaño")
                     Spacer()
                     Picker("Tamaños", selection: $size) {
@@ -48,12 +51,14 @@ struct NCreateNoteView: View {
                         Text("Mediano").tag(TypeCard.medium)
                     }
                 }
-                
+                .padding()
                 Toggle("Marcar como favorito", isOn: $isFavorite)
+                    .padding()
+
                 Button {
                     onTap()
                 } label: {
-                    Text("Guardar nota")
+                    Text("Guardar Nota")
                         .font(.headline)
                         .foregroundStyle(Color.white)
                         .frame(maxWidth: .infinity)
@@ -61,7 +66,7 @@ struct NCreateNoteView: View {
                         .background(Color.blue)
                         .cornerRadius(8)
                 }
-                .padding(.top,20)
+                .padding(.top, 20)
             }
         }
         .padding()
