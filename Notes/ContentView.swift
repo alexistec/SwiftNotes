@@ -10,8 +10,10 @@ import SwiftUI
 
 struct ContentView: View {
     
+    @StateObject var appInfo = AppInfo()
+    
     var body: some View {
-        NListView()
+        NListView().environmentObject(appInfo)
     }
 }
 
