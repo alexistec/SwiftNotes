@@ -1,5 +1,5 @@
 # 📱 Notes App - Learning Swift
-
+![App Demo](app-note-swift.gif) 
 ## 📌 Introduction  
 This repository contains a simple **Notes App** built with SwiftUI. The main purpose of this project is to practice and apply Swift concepts as I learn them.  
 
